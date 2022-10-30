@@ -11,7 +11,8 @@ import "./AddTask.css";
     };
     
     const handleAddTaskClick = () => {
-        handleTaskAddition(inputData)
+        handleTaskAddition(inputData);
+        setInputData(""); //assim quando digitarmos algo e mandarmos para a lista o conteiner ficará vazio para caso queira colocar outra palavra 
     }
     
     return (
