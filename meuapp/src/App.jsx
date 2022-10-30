@@ -12,12 +12,12 @@ const App = () => {
   const [ tasks,  setTasks ] = useState([
     {
       id: "1", 
-      title: "Teste 1",
+      title: "Cronograma de Estudos",
       completed: false,
     },
     {
       id: "2",
-      title: "Teste 2", 
+      title: "Lista de Tarefas", 
       completed: true,
     },
   ]);
