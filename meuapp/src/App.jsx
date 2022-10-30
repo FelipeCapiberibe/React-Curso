@@ -1,20 +1,23 @@
  import React, { useState } from "react";
  import {v4 as uuidv4} from 'uuid';
 
+ import Header from "./components/Header";
  import Tasks from "./components/Tasks";
  import AddTask from "./components/AddTask";
+
  import "./App.css";
+ 
 
 const App = () => {
   const [ tasks,  setTasks ] = useState([
     {
       id: "1", 
-      title: "Estudar Programação",
+      title: "Teste 1",
       completed: false,
     },
     {
       id: "2",
-      title: "Ler livros", 
+      title: "Teste 2", 
       completed: true,
     },
   ]);
@@ -48,6 +51,7 @@ const App = () => {
   return (
     <>
       <div className="container">
+        <Header />
         <AddTask handleTaskAddition={handleTaskAddition}/>
         <Tasks tasks = { tasks } 
         handleTaskClick={handleTaskClick}
