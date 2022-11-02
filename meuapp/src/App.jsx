@@ -1,7 +1,8 @@
- import React, { useState } from "react";
+ import React, { useState, useEffect } from "react";
  import axios from 'axios'; 
  import {v4 as uuidv4} from 'uuid';
- import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'; 
+ import {BrowserRouter as Router, Route} from 'react-router-dom'; 
+ import { BrowserRouter as Routes } from "react-router-dom";
 
  import Header from "./components/Header";
  import Tasks from "./components/Tasks";
@@ -9,7 +10,7 @@
  import TaskDetails from './components/TaskDetails';
 
  import "./App.css";
-import { useEffect } from "react";
+// import { useEffect } from "react";
  
 
 const App = () => {
@@ -24,12 +25,18 @@ const App = () => {
       title: "Lista de Tarefas", 
       completed: true,
     },
-  
-      useEffect (() => {   //esse Hook executa esse bloco de codigo sempre que uma variavel muda.
+  ]);
+  useEffect (() => {   //esse Hook executa esse bloco de codigo sempre que uma variavel muda.
+      const fetchTasks = async () => {
+          const {data} = await axios.get (
+            "https://jsonplaceholder.cypress.io/todos?_limit=10"
+          );
+            setTasks(data);
+      };
 
-      })
 
-  ])
+        fetchTasks();
+  }, []); //essa lista vazia só executa o que a gente escrever aqui quando o componente for montado.
 
   const handleTaskClick = (taskId) => {
     const newTasks = tasks.map((task) => {
@@ -62,7 +69,7 @@ const App = () => {
       <div className="container">
         <Header />
         <Routes >
-        <Route>
+        <Route
                 path= "/" 
                 exact 
                 render= {() => (
@@ -74,9 +81,9 @@ const App = () => {
                   handleTaskDeletion={handleTaskDeletion}/>
             </>
           )}
-        </Route>
+        ></Route>
         <Route path="/:taskTitle" exact component={TaskDetails}></Route>
-        </Routes>
+       </Routes>
        </div>
       </ Router>
   );
