@@ -1,6 +1,7 @@
  import React, { useState } from "react";
+ import axios from 'axios'; 
  import {v4 as uuidv4} from 'uuid';
- import {BrowserRouter as Router, Route} from 'react-router-dom'; 
+ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'; 
 
  import Header from "./components/Header";
  import Tasks from "./components/Tasks";
@@ -8,6 +9,7 @@
  import TaskDetails from './components/TaskDetails';
 
  import "./App.css";
+import { useEffect } from "react";
  
 
 const App = () => {
@@ -22,7 +24,12 @@ const App = () => {
       title: "Lista de Tarefas", 
       completed: true,
     },
-  ]);
+  
+      useEffect (() => {   //esse Hook executa esse bloco de codigo sempre que uma variavel muda.
+
+      })
+
+  ])
 
   const handleTaskClick = (taskId) => {
     const newTasks = tasks.map((task) => {
@@ -54,6 +61,7 @@ const App = () => {
       <Router>
       <div className="container">
         <Header />
+        <Routes >
         <Route>
                 path= "/" 
                 exact 
@@ -68,6 +76,7 @@ const App = () => {
           )}
         </Route>
         <Route path="/:taskTitle" exact component={TaskDetails}></Route>
+        </Routes>
        </div>
       </ Router>
   );

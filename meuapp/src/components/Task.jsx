@@ -1,13 +1,13 @@
 import React from "react";
 import {CgClose, CgInfo} from 'react-icons/cg';
-import {useHistory} from 'react-router-dom';  
+import {useNavigate} from 'react-router-dom';  
 
 import "./Task.css"; 
 
 const Task  = ({ task, handleTaskClick, handleTaskDeletion}) => { //Quando eu coloco algo como parâmetro() dentro da minha const em {} está sendo utilizado com JS. 
-    const   history = useHistory(); 
+    const   history = useNavigate(); 
     const   handleTaskDetailsClick = () => {
-            history.push('/${task.title}')
+            history('/${task.title}')
     }
     return (
     <div 
